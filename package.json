@@ -1,0 +1,19 @@
+{
+  "name": "releaselink",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/main.ts",
+    "start": "bun run src/main.ts",
+    "typecheck": "tsc",
+    "format": "oxfmt"
+  },
+  "dependencies": {
+    "elysia": "1",
+    "ua-parser-js": "^2.0.10"
+  },
+  "devDependencies": {
+    "@types/bun": "1",
+    "oxfmt": "^0.61.0",
+    "typescript": "5"
+  }
+}
