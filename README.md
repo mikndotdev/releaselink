@@ -105,3 +105,12 @@ If the tag or an appropriate asset can't be found, the caller is redirected to
 Requests to the GitHub API are unauthenticated by default (60 requests/hour per IP). To raise the
 limit to 5,000 requests/hour, set a `GITHUB_TOKEN` environment variable with a GitHub token; it is
 sent as a bearer token automatically when present.
+
+## Caching
+
+GitHub API responses can be cached in Redis so repeated requests for the same repository don't
+re-query GitHub and burn through the rate limit. Set a `REDIS_URL` environment variable pointing at
+your Redis instance to enable it; when unset, caching is disabled and every request queries GitHub
+directly. Tagged releases are cached for 30 days (their assets never change), while `latest` is
+cached for 10 minutes so new releases show up quickly. Override the durations (in seconds) with the
+optional `CACHE_TTL_TAG` and `CACHE_TTL_LATEST` variables.
